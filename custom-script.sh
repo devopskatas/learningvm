@@ -7,3 +7,4 @@ set -eux
 #
 # For example:
 # yum install -y curl wget git tmux firefox xvfb
+
