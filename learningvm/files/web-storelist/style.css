@@ -1,0 +1,63 @@
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width:600px;
+    border: 1px solid black;
+    margin:auto;
+}
+
+td {
+    vertical-align: top;
+    border: 1px solid black;
+    text-align: left;
+}
+
+ul.sectionList {
+    font-weight: bold;
+    list-style-position: inside;
+    padding: 5px;
+    list-style: none;
+    align-self: center;
+}
+
+li.sectionList {
+    padding: 2px;
+    border-bottom: 2px solid white;
+}
+
+li.dairy {
+    background-color: #ed7d31
+}
+
+li.paper {
+    background-color: #a5a5a5
+}
+
+li.frozen {
+    background-color: #c00000
+}
+
+li.chips {
+    background-color: #ffd99c
+}
+
+li.cereal {
+    background-color: #7030a0
+}
+
+li.meat {
+    background-color: #00b0f0
+}
+
+li.canned {
+    background-color: #b5c6e7
+}
+
+li.produce {
+    background-color: #a8d08d
+}

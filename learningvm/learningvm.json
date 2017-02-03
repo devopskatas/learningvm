@@ -1,0 +1,64 @@
+{
+  "builders" :[
+      {
+        "vm_name": "devopskatas_learningvm",       
+        "type": "virtualbox-ovf",
+        "source_path": "F:\\Dave\\appliance_builds\\ubuntu\\output-ubuntu_appliance_base-virtualbox-iso\\ubuntu_appliance_base.ovf",
+        "ssh_password": "{{ user `ssh_password` }}",
+        "ssh_username": "{{ user `ssh_username` }}",
+        "shutdown_command": "echo {{ user `ssh_password` }} | sudo -S shutdown -P now"
+      }   
+  ],
+  "provisioners": [
+    {
+        "type":"file",
+        "source":"files/locale",
+        "destination":"/home/devops/locale"
+    },
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir storelist; mkdir web-storelist"]
+    },
+    {
+        "type":"file",
+        "source":"files/web-storelist/",
+        "destination":"/home/devops/web-storelist"
+    },
+    {
+        "type":"file",
+        "source":"files/storelist.txt",
+        "destination":"/home/devops/storelist.txt"
+    },
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv locale /etc/default"]
+    },
+    {
+        "type":"shell",
+        "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+        "scripts": [
+          "script/git.sh",
+          "script/ansible-install.sh",
+          "script/atom.sh"
+          ]
+    },
+    {
+            "environment_vars": [
+            "SSH_USERNAME={{user `ssh_username`}}",
+            "SSH_PASSWORD={{user `ssh_password`}}"
+            ],
+            "type": "shell",
+            "execute_command": "echo '{{ user `ssh_password` }}' | . '{{.Path}}'",
+            "scripts": [
+                "script/launcher.sh"
+            ]
+    }
+  ],
+  
+  "variables": {
+    "ssh_fullname": "DevOps Katas",
+    "ssh_password": "katas",
+    "ssh_username": "devops"
+  }
+
+}
