@@ -1,3 +1,6 @@
+#DevOps Katas Base Appliance
+This is the base appliance Packer build for the DevOps Katas Learning VM.
+
 # Packer templates for Ubuntu
 
 ### Overview
