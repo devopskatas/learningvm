@@ -73,7 +73,8 @@
       "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
         "script/update.sh",
-        "script/desktop.sh",
+        "script/lightdm.sh",
+        "script/unitydeskop.sh",
         "script/sshd.sh",
         "script/virtualbox.sh",
         "script/parallels.sh",
@@ -112,7 +113,7 @@
     "ssh_fullname": "DevOps Katas",
     "ssh_password": "katas",
     "ssh_username": "devops",
-    "update": "true",
+    "update": "false",
     "version": "0.1.0",
     "virtualbox_guest_os_type": "Ubuntu_64",
     "vm_name": "ubuntu_appliance_base"

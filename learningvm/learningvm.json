@@ -3,7 +3,7 @@
       {
         "vm_name": "devopskatas_learningvm",       
         "type": "virtualbox-ovf",
-        "source_path": "F:\\Dave\\appliance_builds\\ubuntu\\output-ubuntu_appliance_base-virtualbox-iso\\ubuntu_appliance_base.ovf",
+        "source_path": "..\\output-ubuntu_appliance_base-virtualbox-iso\\ubuntu_appliance_base.ovf",
         "ssh_password": "{{ user `ssh_password` }}",
         "ssh_username": "{{ user `ssh_username` }}",
         "shutdown_command": "echo {{ user `ssh_password` }} | sudo -S shutdown -P now"
@@ -39,7 +39,8 @@
         "scripts": [
           "script/git.sh",
           "script/ansible-install.sh",
-          "script/atom.sh"
+          "script/atom.sh",
+          "script/install-docker.sh"
           ]
     },
     {
