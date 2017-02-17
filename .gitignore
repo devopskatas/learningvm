@@ -10,6 +10,7 @@ tmp
 Makefile.local
 .tmpatlas/
 *.vmdk
+*.ovf
 
 .DS_Store
 .bundle/
@@ -17,3 +18,4 @@ Makefile.local
 custom.sh
 script/custom/*
 !script/custom/.gitkeep
+
