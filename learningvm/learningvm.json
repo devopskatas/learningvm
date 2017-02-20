@@ -40,7 +40,10 @@
           "script/git.sh",
           "script/ansible-install.sh",
           "script/install-docker.sh",
-          "script/gnome-terminal.sh"
+          "script/gnome-terminal.sh",
+          "script/ruby-install.sh",
+          "script/serverspec-install.sh",
+          "script/gedit-install.sh"
           ]
     }
   ],
