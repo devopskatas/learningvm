@@ -40,7 +40,7 @@
           "script/git.sh",
           "script/ansible-install.sh",
           "script/install-docker.sh",
-          "gnome-terminal.sh"
+          "script/gnome-terminal.sh"
           ]
     }
   ],
