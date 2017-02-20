@@ -39,11 +39,11 @@
         "scripts": [
           "script/git.sh",
           "script/ansible-install.sh",
-          "script/install-docker.sh"
+          "script/install-docker.sh",
+          "gnome-terminal.sh"
           ]
     }
   ],
-  
   "variables": {
     "ssh_fullname": "DevOps Katas",
     "ssh_password": "katas",
