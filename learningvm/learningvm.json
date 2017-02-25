@@ -20,6 +20,10 @@
       "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir storelist; mkdir web-storelist"]
     },
     {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir web-storelist"]
+    },
+    {
         "type":"file",
         "source":"files/web-storelist/",
         "destination":"/home/devops/web-storelist"
@@ -43,7 +47,8 @@
           "script/gnome-terminal.sh",
           "script/ruby-install.sh",
           "script/serverspec-install.sh",
-          "script/gedit-install.sh"
+          "script/gedit-install.sh",
+          "script/install-firefox.sh"
           ]
     }
   ],
