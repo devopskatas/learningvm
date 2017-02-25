@@ -48,7 +48,7 @@
           "script/ruby-install.sh",
           "script/serverspec-install.sh",
           "script/gedit-install.sh",
-          "script/install-firefox.sh" 
+          "script/install-firefox.sh"
           ]
     }
   ],
