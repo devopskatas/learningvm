@@ -16,12 +16,12 @@
     {
         "type":"file",
         "source":"files/git_commands.txt",
-        "destination":"/home/devops"
+        "destination":"/home/devops/git_commands.txt"
     },
     {
         "type":"file",
         "source":"files/runkata.sh",
-        "destination":"/home/devops"
+        "destination":"/home/devops/runkata.sh"
     },
     {
       "type":"shell",

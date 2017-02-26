@@ -1,15 +1,15 @@
 #KATA 1
-mkdir storelist
 cd storelist
-cp ../storelist.txt .
 ls
 git init
+git config user.email 'devops@katas.com'
+git config user.name 'devops'
 ls -A
 ls .git
 git status
 git add storelist.txt
 git status
-git commit
+git commit -a -m "Inital Commit"
 git status
 vi storelist.txt -c ':3mo6' -c ':5mo2' -c ':wq'
 git status
@@ -37,8 +37,27 @@ git branch newbranch
 git branch
 git checkout newbranch
 git branch
-vi storelist.txt -c ':1mo14' -c ':wq'
+vi storelist.txt -c ':1mo16' -c ':wq'
 git commit -a -m 'Newbranch: First to last'
 git checkout master
 # THIS IS A COMMENT
 git diff master newbranch
+#KATA 4
+git merge newbranch
+sed -i '1s/.*/Yummy Yogurt (I love yogurt!)/' storelist.txt
+git commit -a -m "Loving yogurt"
+git checkout newbranch
+sed -i '16s/.*/Moo Milk (lowfat please)/' storelist.txt
+git commit -a -m "Lowfat milk"
+git checkout master
+git diff newbranch
+git merge newbranch
+#KATA 5
+sed -i '3s/.*/Crispy Chips (I want ripple chips)/' storelist.txt
+git commit -a -m "Ripple chips"
+sed -i $'3s/.*/Crispy Chips (I\'ll take the barbecue)/' storelist.txt
+git merge newbranch
+sed -i '3,7d' storelist.txt
+sed -i '3iCrispy Chips (Ripple chips and barbecue)' storelist.txt
+git commit -a -m "Ripple and barbecue, everyone is happy!"
+git log --graph --pretty=oneline
