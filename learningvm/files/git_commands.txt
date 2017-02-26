@@ -42,4 +42,3 @@ git commit -a -m 'Newbranch: First to last'
 git checkout master
 # THIS IS A COMMENT
 git diff master newbranch
-git merge newbranch
