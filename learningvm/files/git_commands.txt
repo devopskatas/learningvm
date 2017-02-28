@@ -61,3 +61,58 @@ sed -i '3,7d' storelist.txt
 sed -i '3iCrispy Chips (Ripple chips and barbecue)' storelist.txt
 git commit -a -m "Ripple and barbecue, everyone is happy!"
 git log --graph --pretty=oneline
+#KATA 6
+cd /home/devops
+docker run -d -p 8080:8080 -p 24918:24918 devopskatas/gitbucket_image
+sleep 10
+firefox localhost:8080 &
+#KATA 7
+cd /home/devops/web-storelist
+ls -A
+git init
+git config user.email 'devops@katas.com'
+git config user.name 'devops'
+git add --all
+git status
+git commit -a -m "Initial Commit"
+git remote add origin http://localhost:8080/git/root/web-storelist.git
+git remote -v
+git push -u origin master
+git status
+#KATA 8
+cd /home/devops
+git clone http://ken.coder@localhost:8080/git/root/web-storelist.git ken.coder
+cd ken.coder
+ls -a
+git config user.email 'ken@thecoders.com'
+git config user.name ‘ken.coder’
+git config credential.helper store
+cd /home/devops
+git clone http://carrie.coder@localhost:8080/git/root/web-storelist.git carrie.coder
+cd carrie.coder
+git config user.email ‘carrie@thecoders.com’
+git config user.name ‘carrie.coder’
+git config credential.helper store
+cd /home/devops/ken.coder
+wget -O storelist.htm https://gist.githubusercontent.com/devopskatas/896f76f4301a761a881131d0bba33400/raw/522b257af7dcedd466a012f45aabc08f69b1d0ed/edit1_storelist.htm
+git status
+git commit -a -m "Adding items"
+git push -u origin master
+cd /home/devops/carrie.coder
+wget -O storelist.htm https://gist.githubusercontent.com/devopskatas/0c315839529910582e6c8b955a2d9899/raw/e173e4b4685db9157f78440924c9967b8d27f213/edit2_storelist.htm
+git status
+git commit -a -m "Adding some items, please put the list in order!"
+git push -u origin master
+git status
+git pull
+wget -O storelist.htm https://gist.githubusercontent.com/devopskatas/5734d495e0c630f44d9162e907a94755/raw/b2af712ee275277c984e2cbf9e3b2d488af582b6/merged_storelist.htm
+git commit -a -m "Combining our lists"
+git push -u origin master
+cd /home/devops/ken.coder
+git remote update
+git status
+git pull
+wget -O storelist.htm https://gist.githubusercontent.com/devopskatas/3f4ce1a50c14a522b9ed9aed9b6d56e4/raw/9cbb70349e5fde0d2b25bacc9928a479ea55e4cf/ordered_storelist.htm
+git status
+git commit -a -m "Reordered the list, time for a trip!"
+git push -u origin master
