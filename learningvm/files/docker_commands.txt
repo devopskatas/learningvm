@@ -95,4 +95,4 @@ docker image build -t katadockerfile_image .
 docker image ls
 docker container run -d -p 80:80 katadockerfile_image
 curl localhost
-Firefox localhost &
+firefox localhost &
