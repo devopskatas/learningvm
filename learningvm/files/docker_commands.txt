@@ -74,6 +74,7 @@ docker container run -d --network=mynet --name web2 nginx
 docker network inspect mynet
 docker container exec web1 ping -w3 web2
 #KATA 6
+cd /home/devops
 mkdir dockerimage
 cd dockerimage
 curl -L http://bit.ly/2cVFa2l > index.html 
