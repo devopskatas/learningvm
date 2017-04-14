@@ -1,0 +1,99 @@
+#KATA 1
+docker container run hello-world
+docker container ls
+docker container ls -a
+docker image ls
+docker container run --name my_image hello-world
+docker container ls -a
+docker container inspect my_image
+docker container run ubuntu ls && ls /bin
+docker container rm $(docker container ls -a -q)
+docker container ls -a
+docker image rm $(docker image ls -aq)
+#KATA 2
+docker container run -d ubuntu /bin/sh -c "while true; do echo hello docker; sleep 1; done"
+docker container ls
+sleep 5
+docker container logs $(docker container ls -q)
+docker container stop $(docker container ls -q)
+docker container run -d --name webserver nginx
+docker container exec webserver ls
+docker container exec webserver ip addr
+docker container exec webserver ip addr | grep inet
+#KATA 3
+docker container run -d --name web -v=myVolume:/webapp nginx
+docker container ls
+docker exec web ls
+docker volume ls
+docker container run -d --name web2 -v myVolume:/webapp nginx
+docker container exec web /bin/sh -c "echo 'some text' > webapp/file1.txt"
+docker container exec web ls webapp
+docker container exec web2 ls webapp
+mkdir dockervolume
+cd dockervolume
+echo file1text > file1.txt
+echo file2text > file2.txt
+ls
+docker container run -d --name web3 -v $PWD/dockervolume:/hostmounted nginx
+docker container exec web3 ls /hostmounted
+docker container stop $(docker container ls -q)
+docker container rm $(docker container ls -aq)
+docker container run -d --name file1 nginx
+docker container cp dockervolume/file1.txt file1:/file1.txt
+docker exec file1 ls file1.txt
+docker container run -d --name file2 nginx
+docker container exec file2 ls file1.txt
+#KATA 4
+docker container stop $(docker container ls -q)
+docker container rm $(docker container ls -aq)
+docker container run -d -p 80:80 --name webserver nginx
+curl localhost
+sleep 2
+firefox localhost &
+docker container run -d -p 81:80 --name webserver2 nginx
+curl http://localhost:81
+sleep 2
+firefox http://localhost:81
+#KATA 5
+docker container stop $(docker container ls -q)
+docker container rm $(docker container ls -aq)
+docker network ls
+docker container run -d --name web1 nginx
+docker container run -d --name web2 nginx
+web1IP=$(docker container inspect web1 --format '{{ .NetworkSettings.IPAddress }}')
+web2IP=$(docker container inspect web2 --format '{{ .NetworkSettings.IPAddress }}')
+docker container exec web1 ping -w3 $web2IP
+docker container exec web2 ping -w3 $web1IP
+docker container exec web1 ping -w3 web2
+docker network create mynet
+docker network inspect mynet
+docker container stop $(docker container ls -q)
+docker container rm $(docker container ls -aq)
+docker container run -d --network=mynet --name web1 nginx
+docker container run -d --network=mynet --name web2 nginx
+docker network inspect mynet
+docker container exec web1 ping -w3 web2
+#KATA 6
+cd /home/devops
+mkdir dockerimage
+cd dockerimage
+curl -L http://bit.ly/2cVFa2l > index.html 
+ls
+docker container run --name web -d -p 80:80 nginx
+docker container cp index.html web:/usr/share/nginx/html/index.html
+curl localhost
+firefox localhost &
+docker container ls
+docker container commit web kataimage_nginx
+docker image ls
+docker container stop $(docker container ls -aq)
+docker container rm $(docker container ls -aq)
+docker container run -d -p 80:80 kataimage_nginx
+curl localhost
+firefox localhost &
+curl -L https://gist.githu0cad0c2c90e595c/raw/72d0bdaa781bfdfa02cf0a8a0ec12de392e4f17a/Dockerfile > Dockerfile
+docker image build -t katadockerfile_image .
+docker image ls
+docker container run -d -p 80:80 katadockerfile_image
+curl localhost
+firefox localhost &

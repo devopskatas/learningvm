@@ -23,7 +23,7 @@ if [[ "${QUERY_ENVIRON}" != "" ]]; then
     export DBUS_SESSION_BUS_ADDRESS="${QUERY_ENVIRON}"
     echo "Connected to session:"
     echo "DBUS_SESSION_BUS_ADDRESS=${DBUS_SESSION_BUS_ADDRESS}"
-    gsettings set com.canonical.Unity.Launcher favorites "['gnome-terminal.desktop', 'firefox.desktop','atom.desktop']"
+    gsettings set com.canonical.Unity.Launcher favorites "['gnome-terminal.desktop', 'firefox.desktop']"
 else
     echo "Could not find dbus session ID in user environment."
     return 1

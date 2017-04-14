@@ -1,0 +1,127 @@
+#KATA 1
+cd storelist
+ls
+git init
+git config user.email 'devops@katas.com'
+git config user.name 'devops'
+ls -A
+ls .git
+git status
+git add storelist.txt
+git status
+git commit -a -m "Inital Commit"
+git status
+vi storelist.txt -c ':3mo6' -c ':5mo2' -c ':wq'
+git status
+git commit -a -m "Reordered list"
+git status
+vi storelist.txt -c ':3mo4' -c ':wq'
+git commit -a -m "Another reorder"
+git status
+#KATA 2
+git log
+git reflog
+git show
+git revert HEAD
+git log --pretty=oneline
+git reflog
+git reset HEAD~1
+git status
+git commit -a -m "Resetting to previous commit"
+git reset HEAD~1 --hard
+git log --pretty=oneline
+git reflog
+#KATA 3
+git branch
+git branch newbranch
+git branch
+git checkout newbranch
+git branch
+vi storelist.txt -c ':1mo16' -c ':wq'
+git commit -a -m 'Newbranch: First to last'
+git checkout master
+# THIS IS A COMMENT
+git diff master newbranch
+#KATA 4
+git merge newbranch --no-edit
+sed -i '1s/.*/Yummy Yogurt (I love yogurt!)/' storelist.txt
+git commit -a -m "Loving yogurt"
+git checkout newbranch
+sed -i '16s/.*/Moo Milk (lowfat please)/' storelist.txt
+git commit -a -m "Lowfat milk"
+git checkout master
+git diff newbranch
+git merge newbranch --no-edit
+#KATA 5
+sed -i '3s/.*/Crispy Chips (I want ripple chips)/' storelist.txt
+git commit -a -m "I want Ripple Chips"
+git checkout newbranch
+sed -i $'3s/.*/Crispy Chips (I\'ll take the barbecue)/' storelist.txt
+git commit -a -m "Barbecue for me"
+git checkout master
+git merge newbranch --no-edit
+sed -i '3,7d' storelist.txt
+sed -i '3iCrispy Chips (Ripple chips and barbecue)' storelist.txt
+git commit -a -m "Ripple and barbecue, everyone is happy!"
+git log --graph --pretty=oneline
+#KATA 6
+cd /home/devops
+docker run -d -p 8080:8080 -p 24918:24918 devopskatas/gitbucket_image
+sleep 15
+firefox localhost:8080 &
+#KATA 7
+cd /home/devops/web-storelist
+ls -A
+git init
+git config user.email 'devops@katas.com'
+git config user.name 'devops'
+git add --all
+git status
+git commit -a -m "Initial Commit"
+git remote add origin http://localhost:8080/git/root/web-storelist.git
+git remote -v
+git push -u origin master
+git status
+#KATA 8
+cd /home/devops
+git clone http://ken.coder@localhost:8080/git/root/web-storelist.git ken.coder
+cd ken.coder
+ls -a
+git config user.email 'ken@thecoders.com'
+git config user.name ‘ken.coder’
+git config credential.helper store
+cd /home/devops
+git clone http://carrie.coder@localhost:8080/git/root/web-storelist.git carrie.coder
+cd carrie.coder
+git config user.email ‘carrie@thecoders.com’
+git config user.name ‘carrie.coder’
+git config credential.helper store
+cd /home/devops/ken.coder
+wget -O storelist.htm https://gist.githubusercontent.com/devopskatas/896f76f4301a761a881131d0bba33400/raw/522b257af7dcedd466a012f45aabc08f69b1d0ed/edit1_storelist.htm
+git status
+git commit -a -m "Adding items"
+git push -u origin master
+cd /home/devops/carrie.coder
+wget -O storelist.htm https://gist.githubusercontent.com/devopskatas/0c315839529910582e6c8b955a2d9899/raw/e173e4b4685db9157f78440924c9967b8d27f213/edit2_storelist.htm
+git status
+git commit -a -m "Adding some items, please put the list in order!"
+git push -u origin master
+git status
+git pull
+wget -O storelist.htm https://gist.githubusercontent.com/devopskatas/5734d495e0c630f44d9162e907a94755/raw/b2af712ee275277c984e2cbf9e3b2d488af582b6/merged_storelist.htm
+git commit -a -m "Combining our lists"
+git push -u origin master
+cd /home/devops/ken.coder
+git remote update
+git status
+git pull
+wget -O storelist.htm https://gist.githubusercontent.com/devopskatas/3f4ce1a50c14a522b9ed9aed9b6d56e4/raw/9cbb70349e5fde0d2b25bacc9928a479ea55e4cf/ordered_storelist.htm
+git status
+git commit -a -m "Reordered the list, time for a trip!"
+#KATA 9
+git push -u origin master
+docker stop $(docker ps -aq)
+sleep 5
+docker run -d -p 8080:8080 devopskatas/gitbucket_k9
+sleep 15
+#KATA 10
