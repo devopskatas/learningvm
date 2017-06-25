@@ -20,17 +20,43 @@
       "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir storelist; mkdir web-storelist"]
     },
     {
-      "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir web-storelist"]
-    },
-    {
         "type":"file",
-        "source":"script/favorites.sh",
+        "source":"files/favorites.sh",
         "destination":"/home/devops/favorites.sh"
     },
     {
+        "type":"file",
+        "source":"files/reclone-repos.sh",
+        "destination":"/home/devops/reclone-repos.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/rollback_docker.sh",
+        "destination":"/home/devops/rollback_docker.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/rollback_git.sh",
+        "destination":"/home/devops/rollback_git.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/docker_commands.txt",
+        "destination":"/home/devops/docker_commands.txt"
+    },
+    {
+        "type":"file",
+        "source":"files/runkata.sh",
+        "destination":"/home/devops/runkata.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/index.html",
+        "destination":"/home/devops/index.html"
+    },
+    {
       "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S cp favorites.sh /etc/profile.d/favorites.sh"]
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv favorites.sh /etc/profile.d/favorites.sh"]
     },
     {
         "type":"file",
@@ -53,17 +79,14 @@
           "script/git.sh",
           "script/install-docker.sh",
           "script/gnome-terminal.sh",
-<<<<<<< HEAD
           "script/gedit-install.sh",
           "script/firefox.sh",
-          "script/favorites.sh"
-=======
-          "script/ruby-install.sh",
-          "script/serverspec-install.sh",
-          "script/gedit-install.sh",
-          "script/install-firefox.sh"
->>>>>>> 23ba044a9f5762b543e34c11be8acde4d7f2949e
+          "script/dos2unix.sh"
           ]
+    },
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S dos2unix /etc/profile.d/favorites.sh"]
     }
   ],
   "variables": {
