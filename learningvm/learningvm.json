@@ -21,6 +21,15 @@
     },
     {
         "type":"file",
+        "source":"script/favorites.sh",
+        "destination":"/home/devops/favorites.sh"
+    },
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S cp favorites.sh /etc/profile.d/favorites.sh"]
+    },
+    {
+        "type":"file",
         "source":"files/web-storelist/",
         "destination":"/home/devops/web-storelist"
     },
@@ -28,11 +37,6 @@
         "type":"file",
         "source":"files/storelist.txt",
         "destination":"/home/devops/storelist.txt"
-    },
-    {
-        "type":"file",
-        "source":"script/launcher.sh",
-        "destination":"/home/devops/launcher.sh"
     },
     {
       "type":"shell",
@@ -45,7 +49,9 @@
           "script/git.sh",
           "script/install-docker.sh",
           "script/gnome-terminal.sh",
-          "script/gedit-install.sh"
+          "script/gedit-install.sh",
+          "script/firefox.sh",
+          "script/favorites.sh"
           ]
     }
   ],
