@@ -1,10 +1,12 @@
 #!/bin/bash
 
+sudo apt-get remove docker docker-engine
 apt-get update
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
-apt-get update
-apt-cache policy docker-engine
-apt-get install -y docker-engine=1.13.1-0~ubuntu-xenial
-sudo usermod -aG docker $(whoami)
-sudo usermod -aG docker devops
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce=17.03.1~ce-0~ubuntu-xenial

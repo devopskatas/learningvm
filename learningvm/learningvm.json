@@ -30,6 +30,11 @@
         "destination":"/home/devops/storelist.txt"
     },
     {
+        "type":"file",
+        "source":"script/launcher.sh",
+        "destination":"/home/devops/launcher.sh"
+    },
+    {
       "type":"shell",
       "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv locale /etc/default"]
     },
@@ -38,11 +43,8 @@
         "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
         "scripts": [
           "script/git.sh",
-          "script/ansible-install.sh",
           "script/install-docker.sh",
           "script/gnome-terminal.sh",
-          "script/ruby-install.sh",
-          "script/serverspec-install.sh",
           "script/gedit-install.sh"
           ]
     }
@@ -51,5 +53,6 @@
     "ssh_fullname": "DevOps Katas",
     "ssh_password": "katas",
     "ssh_username": "devops"
-  }
+  },
+  "post-processors": ["vagrant"]
 }
