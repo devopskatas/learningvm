@@ -1,9 +1,8 @@
 #!/bin/bash
 
-echo ARGS: "$@"
+#echo ARGS: "$@"
 TOLINE=0
 MODE="E"
-CMDFILE=""
 
 while [[ $# -gt 0 ]]
 do
@@ -12,15 +11,11 @@ key="$1"
 case $key in
 	-l|--list)
 	MODE="$1"
-	CMDFILE="$2"
 	;;
-	-to|--to-line)		
+	-to|--to-line)
 	TOLINE="$2"
-	CMDFILE="$3"	
+	#echo LINE "$TOLINE"
 	shift # past argument
-	;;
-	-E)
-	CMDFILE="$2"
 	;;
 	--default)
 	DEFAULT=YES
@@ -33,7 +28,7 @@ shift # past argument or value
 done
 
 #read textfile into array
-mapfile -t myArray < $CMDFILE
+mapfile -t myArray < git_kata1_commands.txt
 
 step=1
 if [ $TOLINE == 0 ] ; then
@@ -58,7 +53,10 @@ if [ "$MODE" == "E" ] ; then
 			#echo $((c+1)): ${myArray[$c]}
 			eval ${myArray[$c]}
 		else
-			echo ${myArray[$c]}
+			echo SKIPPING COMMENT
 		fi
 	done
 fi
+
+
+

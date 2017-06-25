@@ -1,36 +1,43 @@
 {
-  "builders" :[
-      {
-        "vm_name": "devopskatas_learningvm",       
-        "type": "virtualbox-ovf",
-        "source_path": "..\\output-ubuntu_appliance_base-virtualbox-iso\\ubuntu_appliance_base.ovf",
-        "ssh_password": "{{ user `ssh_password` }}",
-        "ssh_username": "{{ user `ssh_username` }}",
-        "shutdown_command": "echo {{ user `ssh_password` }} | sudo -S shutdown -P now"
-      }   
-  ],
-  "provisioners": [
+"builders": [
+    {
+  "type":         "null",
+  "ssh_host":     "192.168.1.223",
+  "ssh_username": "devops",
+  "ssh_password": "katas"
+}
+],
+"provisioners": [
     {
         "type":"file",
         "source":"files/locale",
         "destination":"/home/devops/locale"
     },
     {
+        "type":"file",
+        "source":"files/git_commands.txt",
+        "destination":"/home/devops/git_commands.txt"
+    },
+    {
+        "type":"file",
+        "source":"files/runkata.sh",
+        "destination":"/home/devops/runkata.sh"
+    },
+    {
       "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir storelist; mkdir web-storelist"]
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir storelist"]
     },
     {
       "type":"shell",
       "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir web-storelist"]
     },
     {
-        "type":"file",
-        "source":"script/favorites.sh",
-        "destination":"/home/devops/favorites.sh"
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S chown -R devops web-storelist"]
     },
     {
       "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S cp favorites.sh /etc/profile.d/favorites.sh"]
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S chown -R devops storelist"]
     },
     {
         "type":"file",
@@ -40,7 +47,7 @@
     {
         "type":"file",
         "source":"files/storelist.txt",
-        "destination":"/home/devops/storelist.txt"
+        "destination":"/home/devops/storelist/storelist.txt"
     },
     {
       "type":"shell",
@@ -51,25 +58,18 @@
         "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
         "scripts": [
           "script/git.sh",
+          "script/ansible-install.sh",
           "script/install-docker.sh",
           "script/gnome-terminal.sh",
-<<<<<<< HEAD
-          "script/gedit-install.sh",
-          "script/firefox.sh",
-          "script/favorites.sh"
-=======
           "script/ruby-install.sh",
           "script/serverspec-install.sh",
           "script/gedit-install.sh",
           "script/install-firefox.sh"
->>>>>>> 23ba044a9f5762b543e34c11be8acde4d7f2949e
           ]
-    }
-  ],
+    }],
   "variables": {
     "ssh_fullname": "DevOps Katas",
     "ssh_password": "katas",
     "ssh_username": "devops"
-  },
-  "post-processors": ["vagrant"]
+  }
 }
