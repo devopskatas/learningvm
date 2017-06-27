@@ -10,3 +10,4 @@ sudo add-apt-repository \
    stable"
 sudo apt-get update
 sudo apt-get install -y docker-ce=17.03.1~ce-0~ubuntu-xenial
+sudo gpasswd -a devops docker
