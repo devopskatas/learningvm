@@ -81,7 +81,9 @@
           "script/gnome-terminal.sh",
           "script/gedit-install.sh",
           "script/firefox.sh",
-          "script/dos2unix.sh"
+          "script/dos2unix.sh",
+          "script/update.sh",
+          "script/cleanup.sh"
           ]
     },
     {
@@ -94,5 +96,10 @@
     "ssh_password": "katas",
     "ssh_username": "devops"
   },
-  "post-processors": ["vagrant"]
+  "post-processors": [
+    {"type": "vagrant",
+    "vagrantfile_template": "Vagrantfile"
+    }
+    
+    ]
 }
