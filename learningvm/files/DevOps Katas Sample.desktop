@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_US]=okular
+Name[en_US]=DevOps Katas Sample
+Exec=okular "/home/devops/DevOps Katas Sample.pdf"
+Name=DevOps Katas Sample
+Icon=/home/devops/DKLogo55x55.png

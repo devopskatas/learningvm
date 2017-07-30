@@ -1,0 +1,116 @@
+{
+  "builders" :[
+      {
+        "vm_name": "devopskatas_learningvm",       
+        "type": "virtualbox-ovf",
+        "source_path": "..\\output-ubuntu_appliance_base-virtualbox-iso\\ubuntu_appliance_base.ovf",
+        "ssh_password": "{{ user `ssh_password` }}",
+        "ssh_username": "{{ user `ssh_username` }}",
+        "shutdown_command": "echo {{ user `ssh_password` }} | sudo -S shutdown -P now"
+      }   
+  ],
+  "provisioners": [
+    {
+        "type":"file",
+        "source":"files/locale",
+        "destination":"/home/devops/locale"
+    },
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir storelist; mkdir web-storelist"]
+    },
+    {
+        "type":"file",
+        "source":"files/favorites.sh",
+        "destination":"/home/devops/favorites.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/reclone-repos.sh",
+        "destination":"/home/devops/reclone-repos.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/rollback_docker.sh",
+        "destination":"/home/devops/rollback_docker.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/rollback_git.sh",
+        "destination":"/home/devops/rollback_git.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/docker_commands.txt",
+        "destination":"/home/devops/docker_commands.txt"
+    },
+    {
+        "type":"file",
+        "source":"files/runkata.sh",
+        "destination":"/home/devops/runkata.sh"
+    },
+    {
+        "type":"file",
+        "source":"files/DevOps Katas Sample.desktop",
+        "destination":"/home/devops/DevOps Katas Sample.desktop"
+    },
+    {
+        "type":"file",
+        "source":"files/index.html",
+        "destination":"/home/devops/index.html"
+    },
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv favorites.sh /etc/profile.d/favorites.sh"]
+    },
+    {
+        "type":"file",
+        "source":"files/web-storelist/",
+        "destination":"/home/devops/web-storelist"
+    },
+    {
+        "type":"file",
+        "source":"files/storelist.txt",
+        "destination":"/home/devops/storelist.txt"
+    },
+    {
+        "type":"file",
+        "source":"files/DKLogo55x55.png",
+        "destination":"/home/devops/DKLogo55x55.png"
+    },
+    {
+        "type":"file",
+        "source":"files/DevOps Katas Sample.pdf",
+        "destination":"/home/devops/DevOps Katas Sample.pdf"
+    },
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv locale /etc/default"]
+    },
+    {
+        "type":"shell",
+        "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+        "scripts": [
+          "script/git.sh",
+          "script/install-docker.sh",
+          "script/gnome-terminal.sh",
+          "script/gedit-install.sh",
+          "script/okular-install.sh",
+          "script/firefox.sh",
+          "script/xdotool-install.sh",
+          "script/dos2unix.sh",
+          "script/update.sh",
+          "script/cleanup.sh"
+          ]
+    },
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S dos2unix /etc/profile.d/favorites.sh"]
+    }
+  ],
+  "variables": {
+    "ssh_fullname": "DevOps Katas",
+    "ssh_password": "katas",
+    "ssh_username": "devops"
+  }
+}

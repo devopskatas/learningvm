@@ -2,7 +2,7 @@
 "builders": [
     {
   "type":         "null",
-  "ssh_host":     "192.168.1.223",
+  "ssh_host":     "10.0.0.126",
   "ssh_username": "devops",
   "ssh_password": "katas"
 }
@@ -10,63 +10,24 @@
 "provisioners": [
     {
         "type":"file",
-        "source":"files/locale",
-        "destination":"/home/devops/locale"
-    },
+        "source":"files/DKLogo55x55.png",
+        "destination":"/home/devops/DKLogo55x55.png"
+    },  
     {
         "type":"file",
-        "source":"files/git_commands.txt",
-        "destination":"/home/devops/git_commands.txt"
-    },
+        "source":"files/DevOps Katas Sample.desktop",
+        "destination":"/home/devops/DevOps Katas Sample.desktop"
+    },    
     {
         "type":"file",
-        "source":"files/runkata.sh",
-        "destination":"/home/devops/runkata.sh"
+        "source":"files/favorites.sh",
+        "destination":"/home/devops/favorites.sh"
     },
     {
       "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir storelist"]
-    },
-    {
-      "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir web-storelist"]
-    },
-    {
-      "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S chown -R devops web-storelist"]
-    },
-    {
-      "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S chown -R devops storelist"]
-    },
-    {
-        "type":"file",
-        "source":"files/web-storelist/",
-        "destination":"/home/devops/web-storelist"
-    },
-    {
-        "type":"file",
-        "source":"files/storelist.txt",
-        "destination":"/home/devops/storelist/storelist.txt"
-    },
-    {
-      "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv locale /etc/default"]
-    },
-    {
-        "type":"shell",
-        "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
-        "scripts": [
-          "script/git.sh",
-          "script/ansible-install.sh",
-          "script/install-docker.sh",
-          "script/gnome-terminal.sh",
-          "script/ruby-install.sh",
-          "script/serverspec-install.sh",
-          "script/gedit-install.sh",
-          "script/install-firefox.sh"
-          ]
-    }],
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S dos2unix /etc/profile.d/favorites.sh"]
+    }
+    ],
   "variables": {
     "ssh_fullname": "DevOps Katas",
     "ssh_password": "katas",
