@@ -97,9 +97,7 @@
           "script/gedit-install.sh",
           "script/okular-install.sh",
           "script/firefox.sh",
-          "script/xdotool-install.sh",
           "script/dos2unix.sh",
-          "script/update.sh",
           "script/cleanup.sh"
           ]
     },
@@ -115,7 +113,8 @@
   },
   "post-processors": [
     {"type": "vagrant",
-    "vagrantfile_template": "Vagrantfile"
+    "vagrantfile_template": "Vagrantfile",
+    "keep_input_artifact": true
     }
     
     ]
