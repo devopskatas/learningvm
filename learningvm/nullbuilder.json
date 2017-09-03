@@ -2,26 +2,24 @@
 "builders": [
     {
   "type":         "null",
-  "ssh_host":     "10.0.0.126",
+  "ssh_host":     "192.168.99.100",
   "ssh_username": "devops",
   "ssh_password": "katas"
 }
 ],
 "provisioners": [
     {
-        "type":"file",
-        "source":"files/DKLogo55x55.png",
-        "destination":"/home/devops/DKLogo55x55.png"
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir dk && sudo chown -R devops dk"]
     },  
     {
-        "type":"file",
-        "source":"files/DevOps Katas Sample.desktop",
-        "destination":"/home/devops/DevOps Katas Sample.desktop"
-    },    
+      "type":"file",
+      "source":"files/dk/",
+      "destination":"/home/devops/dk"
+    },
     {
-        "type":"file",
-        "source":"files/favorites.sh",
-        "destination":"/home/devops/favorites.sh"
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv dk/favorites.sh /etc/profile.d/favorites.sh"]
     },
     {
       "type":"shell",
