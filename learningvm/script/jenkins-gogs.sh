@@ -1,4 +1,8 @@
 #!/bin/bash
+cd ~/dk
+rm -rf gogs-repositories
+rm -rf web-storelist-k7
+rm -rf jenkins-gogs
 curl -O https://cdn.gogs.io/0.11.29/linux_amd64.tar.gz
 mkdir -p jenkins-gogs
 tar -xzvf linux_amd64.tar.gz -C jenkins-gogs
