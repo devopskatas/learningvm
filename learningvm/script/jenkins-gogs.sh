@@ -16,4 +16,5 @@ sleep 5
 ./gogs admin create-user --name=cody.coder --password=katas --email=cody.coder@thecoders.com --admin=false
 cd ~/dk
 git clone https://github.com/devopskatas/web-storelist-k7.git
-curl -u devops:katas -H "Content-Type: application/json" -X POST -d '{"name":"web-storelist","description":"The Coder family Storelist app","private": false}' localhost:3000/api/v1/admin/users/cody.coder/repos
+curl -u devops:katas -H "Content-Type: application/json" -X POST -d '{"name":"web-storelist","description":"The Coder family Storelist app","private": false}' localhost:3000/api/v1/admin/users/cody.coder/repos 
+
