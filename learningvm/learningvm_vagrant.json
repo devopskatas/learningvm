@@ -38,6 +38,7 @@
           "script/gedit-install.sh",
           "script/okular-install.sh",
           "script/firefox.sh",
+          "script/install-jenkins.sh",
           "script/dos2unix.sh",
           "script/cleanup.sh"
           ]
