@@ -17,4 +17,6 @@ sleep 5
 cd ~/dk
 git clone https://github.com/devopskatas/web-storelist-k7.git
 curl -u devops:katas -H "Content-Type: application/json" -X POST -d '{"name":"web-storelist","description":"The Coder family Storelist app","private": false}' localhost:3000/api/v1/admin/users/cody.coder/repos 
-
+cd web-storelist-k7
+git remote set-url origin http://localhost:3000/cody.coder/web-storelist.git
+git push http://cody.coder:katas@localhost:3000/cody.coder/web-storelist.git
