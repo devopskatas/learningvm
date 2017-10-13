@@ -9,21 +9,20 @@
 ],
 "provisioners": [
     {
-      "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir dk && sudo chown -R devops dk"]
+        "type":"shell",
+        "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir dk && sudo chown -R devops dk"]
     },  
     {
-      "type":"file",
-      "source":"files/dk/",
-      "destination":"/home/devops/dk"
-    },
+    "type":"file",
+    "source":"files/dk/",
+    "destination":"/home/devops/dk"
+    },  
     {
-      "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv dk/favorites.sh /etc/profile.d/favorites.sh"]
-    },
-    {
-      "type":"shell",
-      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S dos2unix /etc/profile.d/favorites.sh"]
+        "type":"shell",
+        "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+        "scripts": [
+          "script/jenkins-gogs.sh"
+          ]
     }
     ],
   "variables": {

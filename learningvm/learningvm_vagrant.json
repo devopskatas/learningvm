@@ -40,7 +40,7 @@
           "script/firefox.sh",
           "script/install-jenkins.sh",
           "script/dos2unix.sh",
-          "jenkins-gogs.sh",
+          "script/jenkins-gogs.sh",
           "script/cleanup.sh"
           ]
     },
