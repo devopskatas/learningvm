@@ -28,6 +28,10 @@
       "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv dk/locale /etc/default"]
     },
     {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv dk/hosts /etc"]
+    },
+    {
         "type":"shell",
         "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
         "scripts": [
