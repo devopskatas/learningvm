@@ -18,11 +18,8 @@
     "destination":"/home/devops/dk"
     },  
     {
-        "type":"shell",
-        "execute_command": "echo '{{ user `ssh_password` }}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
-        "scripts": [
-          "script/jenkins-gogs.sh"
-          ]
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mv dk/hosts /etc"]
     }
     ],
   "variables": {

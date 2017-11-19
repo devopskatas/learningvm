@@ -49,6 +49,9 @@
         ],
         [
           "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}"
+        ],
+        [
+          "modifyvm", "{{.Name}}", "--vram", "12"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
