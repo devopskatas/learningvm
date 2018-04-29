@@ -3,13 +3,17 @@
       {
         "vm_name": "devopskatas_learningvm",       
         "type": "virtualbox-ovf",
-        "source_path": "..\\output-ubuntu_appliance_base-virtualbox-iso\\ubuntu_appliance_base.ovf",
+        "source_path": "../output-ubuntu_appliance_base-virtualbox-iso/ubuntu_appliance_base.ovf",
         "ssh_password": "{{ user `ssh_password` }}",
         "ssh_username": "{{ user `ssh_username` }}",
         "shutdown_command": "echo {{ user `ssh_password` }} | sudo -S shutdown -P now"
       }   
   ],
   "provisioners": [
+    {
+      "type":"shell",
+      "inline": ["echo '{{ user `ssh_password` }}' | sudo -S sudo apt-get update"]
+    },  
     {
         "type":"shell",
         "inline": ["echo '{{ user `ssh_password` }}' | sudo -S mkdir dk && sudo chown -R devops dk"]

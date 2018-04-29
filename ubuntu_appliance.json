@@ -86,7 +86,8 @@
         "script/minimize.sh",
         "script/cleanup.sh"
       ],
-      "type": "shell"
+      "type": "shell",
+      "expect_disconnect" : true
     }
   ],
   "variables": {
